@@ -1,0 +1,288 @@
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>حبيبة هاند ميد</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Lalezar&family=Tajawal:wght@400;500;700;900&display=swap" rel="stylesheet">
+<script src="https://cdnjs.cloudflare.com/ajax/libs/qrcodejs/1.0.0/qrcode.min.js"></script>
+<style>
+  :root{
+    --plum:#241220;
+    --plum-2:#331a2c;
+    --cream:#fbf3e7;
+    --fuchsia:#e8368f;
+    --turquoise:#17b2a6;
+    --marigold:#f4a62a;
+    --violet:#8a5cf6;
+    --thread: repeating-linear-gradient(90deg, var(--marigold) 0 10px, transparent 10px 20px);
+  }
+  *{box-sizing:border-box;}
+  html,body{margin:0;padding:0;}
+  body{
+    background:
+      radial-gradient(circle at 15% 0%, rgba(232,54,143,0.25), transparent 45%),
+      radial-gradient(circle at 90% 15%, rgba(23,178,166,0.22), transparent 40%),
+      var(--plum);
+    color:var(--cream);
+    font-family:'Tajawal', sans-serif;
+    min-height:100vh;
+    display:flex;
+    justify-content:center;
+    padding:32px 16px 60px;
+  }
+  .page{
+    width:100%;
+    max-width:460px;
+  }
+
+  /* Header */
+  header{
+    text-align:center;
+    margin-bottom:28px;
+    position:relative;
+  }
+  .stitch{
+    height:3px;
+    width:120px;
+    margin:14px auto 0;
+    background-image: var(--thread);
+    background-size: 20px 3px;
+    border-radius:2px;
+  }
+  .avatar{
+    width:96px;height:96px;
+    margin:0 auto 16px;
+    border-radius:50%;
+    background:conic-gradient(from 210deg, var(--fuchsia), var(--marigold), var(--turquoise), var(--violet), var(--fuchsia));
+    padding:4px;
+    display:flex;
+    align-items:center;
+    justify-content:center;
+  }
+  .avatar span{
+    width:100%;height:100%;
+    border-radius:50%;
+    background:var(--plum-2);
+    display:flex;
+    align-items:center;
+    justify-content:center;
+    font-family:'Lalezar', cursive;
+    font-size:34px;
+    color:var(--cream);
+  }
+  h1{
+    font-family:'Lalezar', cursive;
+    font-weight:400;
+    font-size:2.4rem;
+    margin:0;
+    letter-spacing:1px;
+    background:linear-gradient(90deg, var(--fuchsia), var(--marigold) 45%, var(--turquoise));
+    -webkit-background-clip:text;
+    background-clip:text;
+    color:transparent;
+  }
+  .tag{
+    font-size:.95rem;
+    color:#e3c9d8;
+    margin-top:8px;
+    letter-spacing:.5px;
+  }
+
+  /* Links */
+  .links{
+    display:flex;
+    flex-direction:column;
+    gap:16px;
+  }
+  .card{
+    position:relative;
+    background:var(--plum-2);
+    border-radius:18px;
+    padding:16px 18px;
+    display:flex;
+    align-items:center;
+    gap:14px;
+    text-decoration:none;
+    color:var(--cream);
+    border:1px solid rgba(255,255,255,0.06);
+    isolation:isolate;
+    overflow:hidden;
+    transition:transform .18s ease, border-color .18s ease;
+  }
+  .card::before{
+    content:"";
+    position:absolute;
+    inset:0;
+    border-radius:18px;
+    padding:1.5px;
+    background:linear-gradient(120deg, var(--accent), transparent 55%);
+    -webkit-mask:linear-gradient(#000 0 0) content-box, linear-gradient(#000 0 0);
+    -webkit-mask-composite: xor;
+    mask-composite: exclude;
+    opacity:.9;
+    z-index:-1;
+  }
+  .card:active{ transform:scale(0.98); }
+  .icon{
+    flex:0 0 44px;
+    width:44px;height:44px;
+    border-radius:12px;
+    display:flex;
+    align-items:center;
+    justify-content:center;
+    background:var(--accent);
+    color:var(--plum);
+    font-weight:900;
+    font-size:1.2rem;
+  }
+  .card .label{
+    flex:1;
+  }
+  .card .label b{
+    display:block;
+    font-size:1.05rem;
+    font-weight:700;
+  }
+  .card .label small{
+    display:block;
+    color:#cbb3c4;
+    font-size:.8rem;
+    margin-top:2px;
+  }
+  .arrow{
+    font-size:1.2rem;
+    color:var(--accent);
+    flex:0 0 auto;
+  }
+
+  .whatsapp{ --accent:#25d366; }
+  .telegram{ --accent:#3fb6f0; }
+  .facebook{ --accent:#5b8def; }
+  .tiktok{ --accent:#f4a62a; }
+
+  /* QR section */
+  .qr-title{
+    text-align:center;
+    margin:40px 0 18px;
+    font-family:'Lalezar', cursive;
+    font-size:1.5rem;
+    color:var(--cream);
+  }
+  .qr-title .stitch{ margin-top:10px; }
+  .qr-grid{
+    display:grid;
+    grid-template-columns:1fr 1fr;
+    gap:14px;
+  }
+  .qr-card{
+    background:var(--plum-2);
+    border-radius:16px;
+    padding:14px 10px 12px;
+    text-align:center;
+    border:1px dashed rgba(255,255,255,0.18);
+  }
+  .qr-card .qr-box{
+    background:var(--cream);
+    border-radius:10px;
+    padding:8px;
+    display:inline-block;
+    line-height:0;
+  }
+  .qr-card p{
+    margin:10px 0 0;
+    font-size:.85rem;
+    font-weight:700;
+  }
+
+  footer{
+    text-align:center;
+    margin-top:40px;
+    color:#b78fac;
+    font-size:.8rem;
+  }
+</style>
+</head>
+<body>
+<div class="page">
+
+  <header>
+    <div class="avatar"><span>ح</span></div>
+    <h1>حبيبة هاند ميد</h1>
+    <div class="tag">شغل إيد بحب… تفصيل وذوق مختلف</div>
+    <div class="stitch"></div>
+  </header>
+
+  <div class="links">
+    <a class="card whatsapp" href="https://wa.me/201201079462" target="_blank" rel="noopener">
+      <div class="icon">W</div>
+      <div class="label"><b>واتساب</b><small>راسليني على طول للطلب والاستفسار</small></div>
+      <div class="arrow">‹</div>
+    </a>
+
+    <a class="card telegram" href="https://t.me/+hfGjOlSmoz1lNjVk" target="_blank" rel="noopener">
+      <div class="icon">T</div>
+      <div class="label"><b>تيليجرام</b><small>قناة العروض والتشكيلات الجديدة</small></div>
+      <div class="arrow">‹</div>
+    </a>
+
+    <a class="card facebook" href="https://www.facebook.com/share/g/1C9Hcj1nbv/?mibextid=wwXIfr" target="_blank" rel="noopener">
+      <div class="icon">f</div>
+      <div class="label"><b>فيسبوك</b><small>جروب المنتجات والصور</small></div>
+      <div class="arrow">‹</div>
+    </a>
+
+    <a class="card tiktok" href="https://www.tiktok.com/@habibaalaaesmail" target="_blank" rel="noopener">
+      <div class="icon">♪</div>
+      <div class="label"><b>تيك توك</b><small>فيديوهات الشغل خطوة بخطوة</small></div>
+      <div class="arrow">‹</div>
+    </a>
+  </div>
+
+  <div class="qr-title">امسحي وادخلي على طول
+    <div class="stitch"></div>
+  </div>
+
+  <div class="qr-grid">
+    <div class="qr-card">
+      <div class="qr-box" id="qr-whatsapp"></div>
+      <p>واتساب</p>
+    </div>
+    <div class="qr-card">
+      <div class="qr-box" id="qr-telegram"></div>
+      <p>تيليجرام</p>
+    </div>
+    <div class="qr-card">
+      <div class="qr-box" id="qr-facebook"></div>
+      <p>فيسبوك</p>
+    </div>
+    <div class="qr-card">
+      <div class="qr-box" id="qr-tiktok"></div>
+      <p>تيك توك</p>
+    </div>
+  </div>
+
+  <footer>حبيبة هاند ميد © 2026</footer>
+</div>
+
+<script>
+  const links = {
+    "qr-whatsapp": "https://wa.me/201201079462",
+    "qr-telegram": "https://t.me/+hfGjOlSmoz1lNjVk",
+    "qr-facebook": "https://www.facebook.com/share/g/1C9Hcj1nbv/?mibextid=wwXIfr",
+    "qr-tiktok": "https://www.tiktok.com/@habibaalaaesmail"
+  };
+  Object.entries(links).forEach(([id, url]) => {
+    new QRCode(document.getElementById(id), {
+      text: url,
+      width: 110,
+      height: 110,
+      colorDark: "#241220",
+      colorLight: "#fbf3e7",
+      correctLevel: QRCode.CorrectLevel.M
+    });
+  });
+</script>
+</body>
+</html>
